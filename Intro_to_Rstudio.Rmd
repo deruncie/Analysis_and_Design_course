@@ -8,17 +8,68 @@ date: "2025-06-11"
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
+# Quick Intro to R
+
+Learning how to manipulate and analyze data in R will be a very valuable skill.
+This document is designed to introduce you to some of the basic ideas that are widely applicable.
+We start with bringing data into our environment & loading packages before moving into simple calculations, vectors, data.frames, lists, data management, and finally plotting.
+
+## What is R? Why use R?
+
+R is a programming language that specializes in statistical computing and data visualization.\
+
+It is open-source, free, and most often is used with RStudio, which provides a simple interface for users to view their code scripts, evaluate code in the **Console**, view generated plots, and navigate their file directory.
+Because it is open-source, it provides many user-created packages for statistical analysis (as we'll see later).
+
+## R scripts
+
+R scripts are text files (like this one) that contain all R commands necessary to run an analysis.
+There are typically two types of R scripts:
+
+-   Files with the `.R` file extension can be run from start to finish and can be "executed" to run complex programs - we won't be using them much in this class.
+-   Files with the `.Rmd` file extension are R markdown notebooks, and are the ones we'll be working with in this class. They provide more options for entering text and allow users to create code blocks that run separately.
+
+Scripts work just like entering commands sequentially into the **Console**, but provide a history of what you did.
+
 ## R Markdown
 
 This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
 
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
+### Comments (the '\#' symbol):
+
+```{r}
+# The pound sign/hashtag is very important in R. 
+# The '#' denotes that the text following it is a comment. 
+# Anything written after a '#' will not be treated as an instruction for R to run. 
+# In RStudio, you can see that text after a '#' changes color to indicate it's a comment, and not code. 
+# You can use comments to explain in plain English what your code is doing, and why. 
+# Your code should have lots of comments.  
+# Comments can come after a command on the same line or on their own line. Nothing is returned from this chunk.
+```
+
+### Code blocks
+
+Below is a code block that is used in R markdown files.
+In a code block, all text is interpreted as `R` code that should be evaluated.
+Any line that should not be evaluated (e.g. not an R command or code you don't want to run) should be started with a `#`.
+You can run each line separately or run the whole code block at once using the green arrow.
+Check your keyboard shortcuts in Tools \> Keyboard Shortcuts Help to make running code easier.
+
+```{r}
+'Hello world'
+# A comment
+```
+
+Did you notice a new window appear under the code block?
+We call this the "output" window - it prints out all lines in the code block that are meant to be printed out.
+Depending on the assignment, we may ask you to keep this output in your submission so we can check your numbers.
+
+When compiling an R markdown document, you can click the **Knit** button - a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
 
 ```{r cars}
 summary(cars)
 ```
-
-## Including Plots
 
 You can also embed plots, for example:
 
@@ -27,3 +78,402 @@ plot(pressure)
 ```
 
 Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+
+## Use R as a mathematical and boolean calculator:
+
+Run each of the commands below separately by putting your cursor on the line and clicking **Run** above
+
+```{r}
+# as you would expect the standard computer calculator symbols apply: 
+# + is addition
+# - is subtraction
+# * is multiplication
+# / is division
+# ^ or ** are exponents
+
+2*3
+(1+2+3)/3
+2^3
+```
+
+R has many functions for doing math:
+
+```{r}
+sqrt(4) # square root
+pi
+exp(1) # the natural exponential
+log(exp(1)) # natural log
+log2(2) # log base 2
+log10(10) # log base 10
+```
+
+R can evaluate logical statements:
+
+```{r}
+5 > 3    # > is greater than, < is less than
+6 == 5   # two equal signs is the logical test (is equal to). (One equal sign is assignment. see below)
+5 != 3   # not equal to
+5 >= 5   # greater than or equal to
+
+# compare text (character strings)
+"bookshelves" == "a totally different character"
+"apples" != "oranges"
+"apples" != "Apples" # R is always case-sensitive
+```
+
+### Packages: using `install.packages()` and `library()`:
+
+There are thousands of free packages available that extend R's functionality.
+Each package includes one or more functions that do specific tasks.
+Packages can be installed with the function: `install.packages()`, or using the **Packages** window in RStudio.
+
+The following code will install most of the packages we will use in this course
+
+```{r}
+# install.packages(c('rmarkdown','learnr', 'readr', 'devtools','Matrix','lme4','lmerTest','pbkrtest','multcomp','multcompView','car','emmeans','ggplot2', 'cowplot')) 
+# remove the `#` symbol to run once. Then add it back so it doesn't run again!
+# devtools::install_github('deruncie/PLS205_package')
+# you can also install user-developed packages from Github
+```
+
+Once packages are installed, you need to load them each time you want to use them:
+
+```{r}
+library(lme4)
+library(ggplot2)
+library(PLS205)
+```
+
+------------------------------------------------------------------------
+
+## R programming
+
+Running analyses in R is more than just loading data and writing the right model.
+
+A good analysis will perform and document all steps in your workflow, from data cleaning, pre-processing, modeling, interpretation, and display.
+
+These tasks require learning a bit about how to write scripts or programs.
+
+Below, we demonstrate some key tools for working in the `R` language:
+
+### Getting help
+
+1.  Search in the **Help** pane.
+2.  Type `?` or alternatively `help` and `??` (or alternatively `help.search`). Use `?` (or `help(yourcommand)`) if you know the exact command name and use `??yourcommand` (or `help.search("yourcommand")`) if you don't know the command name, R will return a list of commands matching (somehow) your search.
+
+```{r}
+?read.csv	# the same as help(read.csv)
+??lmer	# the same as help.search("lmer")
+```
+
+3.  Search online. Pretty much any question you might have has been asked by someone in some forum. Learning how to find these answers is a very useful skill. Generative AI (e.g. ChatGPT, Copilot) can be useful but may provide code that is more complicated than needed for this class (and potentially give undesired answers)!
+
+### Variables
+
+Variables are a named "object" that stores a value so you can reference it later.
+Similar to how you would define a variable in math like $x = 5$, you can do this in R with numbers, character strings, or sets of data.
+Use the `<-` operator to perform variable assignment.
+The `=` operator also works.
+
+```{r}
+# assign variable x to be 5 and y to be 6
+x <- 5
+y <- 6
+# add x and y
+x + y
+
+# assign a character string to z
+z <- "bookshelf"
+z
+```
+
+### Vectors
+
+Vectors are one-dimensional simple lists of values.
+
+Vectors are useful for grouping similar objects together.
+
+Vectors can be created with the `c()` concatenation function:
+
+```{r}
+# vector of characters
+furniture <- c("sofa", "chair", "table", "desk")
+furniture
+
+# vector of numbers
+heights <- c(85.4, 98, 45, 55, 3.7)
+heights
+```
+
+Elements of vectors can be named
+
+```{r}
+furniture_sizes <- c(sofa = 83, chair = 30, table = 102)
+furniture_sizes
+```
+
+Elements of vectors can be accessed with brackets `[]`
+
+```{r}
+furniture[2]
+heights[3:5]
+furniture_sizes['sofa']
+```
+
+> We'll use vectors like this to store answers in homeworks and exams.
+
+When data is stored in a vector, we can apply the same operation to each element of the vector
+
+```{r}
+heights
+heights + 10
+heights > 80
+```
+
+### Calling R functions
+
+Functions are the workhorses of R.
+They can do simple things, like find the mean of some numbers, load data, or evaluate complicated models.
+Pretty much everything you do in R involves using (or writing your own) functions, so it's important to understand how they work.
+
+Here are some functions:
+
+```{r}
+mean(c(1,2,3)) # calculates the mean
+sort(c(10,3,2,5)) # sorts numbers
+qnorm(p = 0.95,mean = 10,sd = 3) # finds the 0.95 critical value of a normal distribution with mean = 10 and sd = 3
+```
+
+Functions take *arguments* as input, and then *return* values as output.
+If you call a function by itself like above, the result is added directly to your R Notebook in the chunk output.
+However, you can *assign* this output to a variable with the `=` symbol
+
+```{r}
+m3 = mean(c(1,2,3))
+m3
+```
+
+Most functions require that you provide them data to work on - these are what are known as arguments (also called parameters).
+You can see what a function requires to run in it's help page by typing `?mean`, or highlighting the word and typing `F1`.
+The help page lists the arguments of a function in RStudio's help pane.
+Each argument is named.
+Some arguments have default argument values.
+You don't have to pass an argument that has a default value if you want to use that value.
+
+Compare how we called `mean` and `qnorm` above.
+Note that we specified the argument names in `qnorm`, but not for `mean`.
+Argument names aren't strictly required as long as you pass the values in the correct order.
+But it's always a good idea to use the name so that your code is easier to read, and it's easier to find mistakes.
+
+The qnorm function could also have been called like this:
+
+```{r}
+qnorm(p = 0.95,m = 10,s = 3) 
+```
+
+*Partial matching* of argument names works to save you time (as long as it's unambiguous which argument you mean, R will guess).
+But this is a bit dangerous too - we'll give you some tips later!
+
+------------------------------------------------------------------------
+
+## Working with data
+
+All data that we will work with in this class will be spreadsheet-like, meaning that it will be arranged in columns, with rows as observations, and columns as descriptors or numbers.
+A simple data set is provided called `iris_data.csv`.
+Open this data in Excel and look at it.
+Note that each plant is given one row, and is labeled with a species and four measurements.
+
+### loading data
+
+The main functions for reading data into `R` are: `read.csv`, `read.tsv`, or `read.delim`, depending on how your data are encoded.
+Data values in files are delimited by a specific character: for instance, `.csv` files stand for comma-separated files and `.tsv` stand for tab-separated files.
+
+```{r}
+iris <- read.csv('Background/data/iris_data.csv')  # default function
+iris <- read.csv('Background/data/iris_data.csv',header = TRUE)  # explicitly specify that the first row of the data contains column names
+iris <- read.delim('Background/data/iris_data.csv',header = TRUE,sep=',')  # explicitly specify that entries are separated by commas
+```
+
+> The above commands have three important parts:
+>
+> 1.  The **function** (read.csv or read.delim) reads data.
+> 2.  The function call is given **arguments** that tell it what to do. Here, we provide first a filename, and other parameters to control its behavior.
+> 3.  The **assignment operator** `<-`. This tells R to take the output of the function (here, the loaded data), and assign it to the **object** called `iris`. Once the data is assigned to the object `iris`, it is held in memory and we can access it with other functions. You can see all objects you have currently in memory in RStudio's **Environment** window. **Note**, for our purposes, you can equivalently use `=` for assignment.
+
+You must give these functions the filepath, or the location of your data **relative** to your working directory (usually where you have saved your .Rmd file).
+
+For instance, if `iris_data.csv` is in the same folder as your code, then you can tell `read.csv()` to find your data using the filepath `'iris_data.csv'`.
+But if it's nested within the directory `data`, then you will have to give the filepath `'data/iris_data.csv'`.
+
+RStudio also provides a neat tool for importing data.
+Choose `File -> Import Dataset -> From Text (base)`, select the file name, then use the dialog box to describe the file.
+This will generate an R command for you and run it in the console.
+Simply copy that command, and paste it into your document here:
+
+```{r}
+# Copy the import command that RStudio generated for you and paste it here in your script
+
+```
+
+### Viewing data
+
+Now that the data are loaded and assigned to the object `iris`, we can view it in several ways:
+
+```{r}
+iris
+# alternative: print(iris)
+```
+
+Simply typing the name of the object and running the code **prints** out the whole object to the screen.
+(You can close this view by clocking the little `x` icon in the top-right corner of the output)
+
+```{r}
+str(iris)
+```
+
+`str` is a **function** that provides a concise summary of the data.
+Note that `iris` is a data.frame, with 150 observations and 5 variables.
+The first four variables are all numbers, and the 5th is a Factor.
+We'll discuss the differences later.
+
+RStudio also provides the function `View()`.
+It will bring up something that look like a spreadsheet in a new window.
+
+```{r}
+summary(iris)
+View(iris)
+```
+
+`summary` is similar to `str` but calculates numerical summaries of each column.
+
+### Accessing data
+
+Now that your data are loaded, we can access it in several ways:
+
+```{r}
+iris[,1]
+```
+
+This gives the first row of the data
+
+```{r}
+iris$Sepal.Length
+# alternatives: iris[,1], iris[,'Sepal.Length'], iris[['Sepal.Length]]
+```
+
+This accesses all the values in the `Sepal.Length` column.
+
+Vectors can also be extracted from data.frames:
+
+```{r}
+observation_1 <- iris[1,]
+observation_1
+
+data_1 <- iris$Sepal.Length
+data_1
+```
+
+`observation_1` and `data_1` are both vectors, but represented slightly differently.
+Note here that because of this, the output block contains multiple windows for you to view each output.
+
+Commands can be combined:
+
+```{r}
+summary(iris$Sepal.Width)
+```
+
+```{r}
+head(iris$Petal.Length)
+```
+
+Data can be accessed and assigned to a new **object**
+
+```{r}
+setosa <- subset(iris,Species == 'setosa')
+str(setosa)
+```
+
+> Notes:
+>
+> 1.  The function `subset` takes two arguments: a data.frame (iris), and then a logical vector specifying which **rows** of the data.frame to select
+> 2.  The output is a new data.frame with only the observations of the **setosa** species listed
+
+We can now reference the setosa data specifically:
+
+```{r}
+mean(setosa$Sepal.Length)
+```
+
+### Using the tab auto-complete:
+
+We mentioned the danger of incomplete argument names and you may often find yourself misspelling variable names in your career.
+R provides a way for you to auto-complete!
+
+```{r, eval=FALSE}
+# the tab key can be used to auto-complete words in R. This can save a lot of typing!
+
+# It works for the columns of a data.frame (the standard object for holding data files)
+# try hitting tab with the cursor after `iris$Sep` below:
+iris$Sep
+
+# It works for variable names you've used already in this document:
+# try below;  
+seto
+
+# It works for any R function in any package you've already loaded:
+read.cs
+
+# It also works with files and directories:
+'Background/data/iris_dat'
+
+```
+
+### Plotting data
+
+R has many functions for plotting data.
+
+There are two main flavors: **base graphics**, and **ggplot** graphics.
+base graphics are quicker, but ggplot graphics look much better and are faster for some tasks
+
+#### scatterplot
+
+```{r}
+# using base graphics
+plot(x = iris$Sepal.Length,y = iris$Sepal.Width,            # Note: commands can extend across lines
+     xlab = 'Sepal Length (mm)', ylab = 'Sepal Width (mm)',
+     main = 'Iris Sepals')
+
+# using the ggplot library - you may have to install it if you haven't already!
+library(ggplot2)
+# tell ggplot what columns to use for "aes"thetics 
+ggplot(iris,aes(x=Sepal.Length,y=Sepal.Width)) + 
+  # add a scatter plot with geom_point and tell it to use the 'Species" column for color
+  geom_point(aes(color = Species)) +
+  # add a title!
+  ggtitle('Iris Sepals')
+```
+
+#### Boxplots
+
+```{r}
+# base
+boxplot(iris$Petal.Length~iris$Species,
+        ylab = 'Petal.Length',ylim = c(0,8),
+        main = 'Iris petals')
+# ggplot
+ggplot(iris,aes(x=Species,y=Petal.Length)) + 
+  geom_boxplot() + ylim(c(0,8))
+
+```
+
+#### Histograms
+
+```{r}
+# base
+hist(iris$Sepal.Width,breaks = 10)
+# ggplot
+ggplot(iris,aes(x=Sepal.Width)) + 
+  geom_histogram(bins = 10,alpha = 0.7,color='white')
+```
+
+
