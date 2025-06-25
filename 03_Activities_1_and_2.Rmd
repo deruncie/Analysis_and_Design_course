@@ -1,0 +1,122 @@
+---
+title: "Activity_1 - Data Transformation"
+output: html_notebook
+---
+
+```{r setup, include=FALSE}
+library(readr)    # for loading data in a clean way
+library(ggplot2)  # for making nice plots
+library(cowplot)  # for making nicer plots
+library(emmeans)  # for extracting the results of an analysis
+library(lme4)     # for fitting models to more complex experimental designs
+library(lmerTest) # for better hypothesis tests
+library(pbkrtest) # for better hypothesis tests
+library(multcomp) # for better hypothesis tests
+library(multcompView) # for better hypothesis tests
+library(PLS205)   # additional helper functions I've written for teaching
+```
+
+------------------------------------------------------------------------
+
+# Background
+
+## 1. Re-load the dataset if needed
+
+```{r, results = 'hide', message=FALSE}
+bolting_data_1 = read_csv('data/Bolting_experiment_1.csv')
+bolting_data_1$mutant = factor(bolting_data_1$mutant,levels = c('WT','flc-3','vin3-4'))
+```
+
+## 2. Repeating plot1 of data
+
+```{r}
+plot1 = ggplot(bolting_data_1,aes(x=FRI,y=Days.to.Bolt)) + 
+  geom_jitter(width = 0.1,aes(color = FRI)) + 
+  facet_grid(~mutant) +
+  expand_limits(y=0) + 
+  theme_bw() + theme(legend.position = 'none') 
+plot1
+```
+
+## Make the same plot with the data transformation
+
+```{r}
+plot2 = ggplot(bolting_data_1,aes(x=FRI,y=inverse(Days.to.Bolt/100))) + 
+  geom_jitter(width = 0.1,aes(color = FRI)) + 
+  facet_grid(~mutant) +
+  expand_limits(y=0) + 
+  theme_bw() + theme(legend.position = 'none') 
+plot2
+```
+
+## Put the plots together to directly compare:
+
+```{r}
+plot_grid(plot1,plot2,ncol=1)
+```
+
+------------------------------------------------------------------------
+
+# Activity 1
+
+-   Re-do the analysis from the tutorial, this time using the `inverse(Days.to.bolt)` transformation.
+-   Compare the results
+
+## Original code
+
+Here is the code from the tutorial:
+
+```{r}
+bolting_data_1 = read_csv('data/Bolting_experiment_1.csv')
+bolting_data_1$mutant = factor(bolting_data_1$mutant,levels = c('WT','flc-3','vin3-4'))
+str(bolting_data_1)
+
+bolting_model = lm(Days.to.Bolt ~ FRI + mutant + FRI:mutant, bolting_data_1)
+
+bolting_means = emmeans(bolting_model,specs = 'FRI',by = 'mutant')
+print(bolting_means)
+
+FRI_effects = contrast(bolting_means,'trt.vs.ctrl',ref = 'fri',name = 'FRI_effect')
+print(FRI_effects)
+
+regrouped_FRI_effects = update(FRI_effects,by = 'FRI_effect')
+print(regrouped_FRI_effects)
+
+mutant_effect_on_FRI_effects = contrast(regrouped_FRI_effects,'trt.vs.ctrl',ref = 'WT',name = 'mutant_effect')
+print(mutant_effect_on_FRI_effects)
+
+plot(FRI_effects,horizontal = FALSE) + 
+  facet_grid(~mutant) +
+  theme_bw()
+```
+
+## New analysis
+
+Copy and modify the code here
+
+**Hint**: If you save the plot of the FRI effects above in one variable, and then make a new plot and save it in a new variable, you'll be able to combine the two plots into a single figure to directly compare.
+
+```{r}
+
+```
+
+------------------------------------------------------------------------
+
+# Activity 2
+
+Now, let's load the data from a different environment.
+
+The file `data/Bolting_experiment_2.csv` contains data from the same experiment, but with the plants vernalized for 8 weeks.
+
+-   Repeat the analysis (using the same data transformation)
+-   Compare the results **visually**
+-   After, we'll work through how to measure the effect of vernalization on the effect of FRI (for each mutant)!
+
+```{r}
+
+```
+
+> **Questions**
+>
+> 1.  What mutant effects changed the most between the Vernalized (this experiment) and unvernalized (old experiment) conditions?
+> 2.  What would you conclude about the effect of FRI on flowering time?

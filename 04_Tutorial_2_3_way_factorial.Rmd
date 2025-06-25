@@ -1,0 +1,255 @@
+---
+title: "3-way factorial analysis"
+output: 
+  learnr::tutorial:
+    progressive: true
+    allow_skip: true
+runtime: shiny_prerendered
+---
+
+```{r setup, include=FALSE}
+library(learnr)
+knitr::opts_chunk$set(echo = FALSE)
+library(readr)    # for loading data in a clean way
+library(ggplot2)  # for making nice plots
+library(cowplot)  # for making nicer plots
+library(emmeans)  # for extracting the results of an analysis
+library(lme4)     # for fitting models to more complex experimental designs
+library(lmerTest) # for better hypothesis tests
+library(pbkrtest) # for better hypothesis tests
+library(multcomp) # for better hypothesis tests
+library(multcompView) # for better hypothesis tests
+library(PLS205)   # additional helper functions I've written for teaching
+```
+
+## Description of the experiment and goals
+
+Burghardt, et al. (2016) repeated the same experiment in 16 conditions. 
+Combinations of 2 temperatures, 2 diurnal patterns, 2 daylengths, and 2 vernalizations.
+We'll focus on the 4 "warm", "long day" conditions:
+
+- 22ConLDNV
+- 22ConLDV
+- 22VarLDNV
+- 22VarLDV
+
+We want to measure the effect of these environmental conditions on the FRI effects we studied in the first tutorial and activities.
+
+## Load the full dataset
+### Load the full dataset
+
+```{r load_data,exercise=T}
+bolting_data = read_csv('data/Bolting_experiment.csv')
+```
+
+### View the data
+
+```{r view1,exercise=T, exercise.setup = 'load_data'}
+str(bolting_data)
+```
+
+### Change variables to **factors**
+
+```{r set_factors2,exercise=F, include = FALSE, exercise.setup = 'load_data'}
+bolting_data$mutant = factor(bolting_data$mutant,levels = c('WT','flc-3','vin3-4'))
+bolting_data$Genotype = factor(bolting_data$Genotype)
+bolting_data$FRI = factor(bolting_data$FRI)
+# bolting_data$Temperature = factor(bolting_data$Temperature)
+# bolting_data$Fluctuation = factor(bolting_data$Fluctuation)
+# bolting_data$Vernalization = factor(bolting_data$Vernalization)
+bolting_data$Treatment.V = factor(bolting_data$Treatment.V)
+bolting_data$Chamber.ID = factor(bolting_data$Chamber)
+```
+
+
+For complex datasets, it's helpful to use *R's* *factor* feature to label data as categorical.
+Generally, most variables in an experiment should be treated as categorical, except the response.
+
+To convert a variable to categorical, use the `as.factor()` function.
+
+Note: we used this function before with the `mutant` variable do tell *R* which order we wanted. If we don't give an order, it will do it alphabetically.
+
+Change all the categorical variables to factors below:
+
+```{r set_factors,exercise=T, exercise.setup = 'load_data'}
+# here is the first:
+bolting_data$mutant = factor(bolting_data$mutant,levels = c('WT','flc-3','vin3-4'))
+```
+
+Then use `str(bolting_data)` to see the improved view:
+```{r view2,exercise=T, exercise.setup = 'set_factors2'}
+str(bolting_data)
+```
+
+
+## Run the analysis
+
+The basic outline of the analysis will be the same as before, but now with another layer of regrouping and contrasting:
+
+1.  Fit a model to the data
+2.  Compute the cell means for each level of the **focal treatment** separately for each level of all **moderator treatments**.
+3.  Compute the **focal treatment effects** separately for each level of all **moderator treatments**.
+4.  Compare the focal treatment effects **among levels of** the **first** moderator treatments
+5.  Compare the first moderator treatment effects on the focal treatment **among levels of** the **second** moderator treatment
+
+
+### Fit the model
+
+This is code to fit the model.
+
+```{r model1,exercise=TRUE, exercise.setup = 'set_factors2'}
+str(bolting_data)
+bolting_model = lm(inverse(Days.to.Bolt) ~ FRI + mutant + Treatment.V + 
+                                          FRI:mutant + FRI:Treatment.V + mutant:Treatment.V +
+                                          FRI:mutant:Treatment.V, 
+                                          data = bolting_data)
+```
+
+Note how we include all 3 treatment variables, then all 2-way combinations, then the 3-way combination!
+
+There is a short-hand for this: `FRI*mutant*Treatment.V`. 
+It's fine to use once you're comfortable with *R's* models, but be sure you understand the model statements first.
+
+
+### Compute the treatment effects
+
+Using the fitted model, we will compute the treatment effects of interest, using the following steps:
+
+1.  Compute the cell means for each treatment combination
+2.  Compute the **focal treatment** effects at each level of the moderators
+3.  Regroup the effects by focal treatment effect
+4.  Compute the effects of each moderator-1 level on each focal treatment, **grouped by level of moderator 2**
+5. Regroup by levels of moderator-1
+6. Compute the effects of changing moderator-2
+
+### Compute the cell means for each treatment combination
+
+```{r cell_means,exercise = TRUE,exercise.setup ='model1'}
+bolting_means = emmeans(bolting_model,specs = 'FRI',by = c('mutant','Treatment.V'))
+print(bolting_means)
+```
+
+### Compute the **focal treatment** effects at each level of the moderator
+
+Now, here's how to do it with *R*:
+
+```{r FRI_effects,exercise = TRUE,exercise.setup ='cell_means'}
+FRI_effects = contrast(bolting_means,'trt.vs.ctrl',ref = 'fri',name = 'FRI_effect')
+print(FRI_effects)
+```
+
+
+### Plot the FRI effect estimates
+
+We can make a plot of all FRI effects, though it's a bit hard to read:
+```{r plot_FRI_effects,exercise = TRUE,exercise.setup ='FRI_effects'}
+plot(FRI_effects,horizontal = FALSE) + facet_grid(mutant~Treatment.V)
+```
+
+> **Activity** 
+> 
+> - Try flipping the two moderators in `facet_grid`. Do you see effects of both mutant and Treatment.V on the FRI effects?
+
+### Compare the FRI effects among the mutants - Regroup
+
+To compare effects, they have to be in the same `by`-group.
+We need to regroup the FRI effects so they can be compared.
+
+We want to do this separately for each environment (`Treatment.V`)
+
+```{r regroup_FRI_effects,exercise = TRUE,exercise.setup ='FRI_effects'}
+regrouped_FRI_effects = update(FRI_effects,by = c('Treatment.V','FRI_effect'))
+print(regrouped_FRI_effects)
+```
+
+### Compare the FRI effects among the mutants
+
+Now, compare the FRI effects for each mutant against the FRI effects for Col (*i.e.* `WT`) using `contrast():`
+
+```{r mutant_FRI_effects,exercise = TRUE,exercise.setup ='regroup_FRI_effects'}
+mutant_effect_on_FRI_effects = contrast(regrouped_FRI_effects,'trt.vs.ctrl',ref = 'WT',name = 'mutant_effect')
+print(mutant_effect_on_FRI_effects)
+```
+
+This is basically repeating what you did in the second activity, but now repeating it 4 times, once for each of the four `Treatment.V` environments.
+
+> Can you see changes in the effect of a mutant on the FRI effect among environments?
+
+### Regroup the mutant effects on the FRI effect to enable comparisons
+
+```{r regroup_mutant_FRI_effects,exercise = TRUE,exercise.setup ='mutant_FRI_effects'}
+regrouped_mutant_effect_on_FRI_effects = update(mutant_effect_on_FRI_effects,by = c('mutant_effect','FRI_effect'))
+print(regrouped_mutant_effect_on_FRI_effects)
+```
+
+### Compare the mutant effects on the FRI effect among the environments
+
+We could choose a reference environment, or just compare all pairwise
+
+```{r env_effects_mutant_FRI_effects,exercise = TRUE,exercise.setup ='regroup_mutant_FRI_effects'}
+env_effects_on_mutant_effect_on_FRI_effects = contrast(regrouped_mutant_effect_on_FRI_effects,'pairwise')
+print(env_effects_on_mutant_effect_on_FRI_effects)
+```
+
+
+> **Activity** 
+> 
+> - Come up with a way to summarize these results!
+> - Hint: A plot might help!
+
+```{r plot_env_effects_mutant_FRI_effects,exercise = TRUE,exercise.setup ='regroup_mutant_FRI_effects'}
+
+```
+
+
+### Alternative view using Compact Letter Display:
+
+```{r cld_env_effects_mutant_FRI_effects,exercise = TRUE,exercise.setup ='regroup_mutant_FRI_effects'}
+print(cld(regrouped_mutant_effect_on_FRI_effects,Letters = letters))
+```
+
+Note: for compact letter displays, ignore the "SE", "df", "t.ratio" and "p.value" columns!
+
+## Full code:
+```{r full_code, exercise = TRUE,exercise.lines = 39}
+bolting_data = read_csv('data/Bolting_experiment.csv')
+
+bolting_data$mutant = factor(bolting_data$mutant,levels = c('WT','flc-3','vin3-4'))
+bolting_data$Genotype = factor(bolting_data$Genotype)
+bolting_data$FRI = factor(bolting_data$FRI)
+# bolting_data$Temperature = factor(bolting_data$Temperature)
+# bolting_data$Fluctuation = factor(bolting_data$Fluctuation)
+# bolting_data$Vernalization = factor(bolting_data$Vernalization)
+bolting_data$Treatment.V = factor(bolting_data$Treatment.V)
+# bolting_data$Chamber.ID = factor(bolting_data$Chamber.ID)
+
+bolting_model = lm(inverse(Days.to.Bolt) ~ FRI + mutant + Treatment.V + 
+                                          FRI:mutant + FRI:Treatment.V + mutant:Treatment.V +
+                                          FRI:mutant:Treatment.V, 
+                                          data = bolting_data)
+
+bolting_means = emmeans(bolting_model,specs = 'FRI',by = c('mutant','Treatment.V'))
+print(bolting_means)
+
+FRI_effects = contrast(bolting_means,'trt.vs.ctrl',ref = 'fri',name = 'FRI_effect')
+print(FRI_effects)
+
+regrouped_FRI_effects = update(FRI_effects,by = c('Treatment.V','FRI_effect'))
+print(regrouped_FRI_effects)
+
+mutant_effect_on_FRI_effects = contrast(regrouped_FRI_effects,'trt.vs.ctrl',ref = 'WT',name = 'mutant_effect')
+print(mutant_effect_on_FRI_effects)
+
+regrouped_mutant_effect_on_FRI_effects = update(mutant_effect_on_FRI_effects,by = c('FRI_effect','mutant_effect'))
+print(regrouped_mutant_effect_on_FRI_effects)
+
+env_effects_on_mutant_effect_on_FRI_effects = contrast(regrouped_mutant_effect_on_FRI_effects,'pairwise')
+print(env_effects_on_mutant_effect_on_FRI_effects)
+
+print(cld(regrouped_mutant_effect_on_FRI_effects,Letters = letters))
+
+plot(regrouped_mutant_effect_on_FRI_effects,horizontal = T) +
+  geom_vline(xintercept = 0) +
+  theme_bw()
+```
+

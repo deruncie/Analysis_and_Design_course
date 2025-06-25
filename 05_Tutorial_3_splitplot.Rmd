@@ -1,0 +1,385 @@
+---
+title: "Analysis 4 - split plot"
+output: 
+  learnr::tutorial:
+    progressive: true
+    allow_skip: true
+runtime: shiny_prerendered
+editor_options: 
+  markdown: 
+    wrap: 72
+---
+
+```{r setup, include=FALSE}
+library(learnr)
+knitr::opts_chunk$set(echo = FALSE)
+library(readr)    # for loading data in a clean way
+library(ggplot2)  # for making nice plots
+library(cowplot)  # for making nicer plots
+library(emmeans)  # for extracting the results of an analysis
+library(lme4)     # for fitting models to more complex experimental designs
+library(lmerTest) # for better hypothesis tests
+library(pbkrtest) # for better hypothesis tests
+library(multcomp) # for better hypothesis tests
+library(multcompView) # for better hypothesis tests
+library(PLS205)   # additional helper functions I've written for teaching
+```
+
+## Description of the experiment and goals
+
+We'll now focus in more detail on the experimental design of Burghardt,
+et al. (2016). For simplicity, we'll start by looking at only the FRI
+effect in Col (FRI vs fri) in the same four conditions:
+
+-   22ConLDNV
+-   22ConLDV
+-   22VarLDNV
+-   22VarLDV
+
+This is a subset of the experiment we looked at previously. However, now
+we'll look more carefully about the design of this experiment - how the
+treatments were applied and how the randomization was done.
+
+## Load the full dataset
+
+### Load the full dataset
+
+```{r load_data,exercise=T}
+bolting_data_FRI = read_csv('data/Bolting_experiment_3.csv')
+```
+
+### Inspect each column of the data
+
+Here is our normal summary of the data table:
+
+```{r inspect_data1,exercise=T,exercise.setup = 'load_data'}
+str(bolting_data_FRI)
+```
+
+Go through each column of the data and find how many unique values it
+has. You can ignore the columns: `Temperature`, `Fluctuation`, and
+`Vernalization`, as we'll just work with the combined value
+`Treatment.V`.
+
+Use the `table()` function, for example:
+
+```{r inspect_data2,exercise=T,exercise.setup = 'load_data'}
+table(bolting_data_FRI$Genotype)
+```
+
+The unique values are reported, along with how many rows of the table
+have each unique value.
+
+### Inspect the design by looking at pairs of columns
+
+If you give the `table()` function two columns of data, it will count
+the pairwise combinations:
+
+Compare these two summaries:
+
+```{r inspect_data3,exercise=T,exercise.setup = 'load_data'}
+table(Genotype=bolting_data_FRI$Genotype,Treatment.V=bolting_data_FRI$Treatment.V)
+```
+
+```{r inspect_data4,exercise=T,exercise.setup = 'load_data'}
+table(Treatment.V=bolting_data_FRI$Treatment.V,Chamber=bolting_data_FRI$Chamber)
+```
+
+> Consider measuring **Condition effects**.
+>
+> -   What contexts can you compare each pair of conditions?
+> -   What contexts can you not?
+>
+> What about FRI effects?
+
+### Clean / Format data.frame by converting columns to **factors**
+
+While not necessary for modeling, converting columns of a data.frame
+that contain factor labels to the data type **factor** is useful for:
+
+-   quickly checking that data are entered correctly, using the `str()`
+    function
+-   organizing plots and formatting results: plotting and results
+    functions will report factor labels in the specified order
+
+To convert a column to a factor, use the `factor()` function:
+
+```{r clean_data1,exercise=T,exercise.setup = 'load_data'}
+bolting_data_FRI$Chamber = factor(bolting_data_FRI$Chamber)
+```
+
+Repeat the above with the other factor columns, and then view the
+cleaned data.frame using the `str()` function.
+
+```{r clean_data2,exercise=F,exercise.setup = 'load_data',include=F}
+bolting_data_FRI$Chamber = factor(bolting_data_FRI$Chamber)
+bolting_data_FRI$Genotype = factor(bolting_data_FRI$Genotype)
+bolting_data_FRI$FRI = factor(bolting_data_FRI$FRI)
+bolting_data_FRI$mutant = factor(bolting_data_FRI$mutant)
+bolting_data_FRI$Treatment.V = factor(bolting_data_FRI$Treatment.V)
+bolting_data_FRI$Pot = factor(bolting_data_FRI$Pot)
+```
+
+### Changing the order of a factor
+
+Say we want the order of the `Treatment.V` levels to be:
+
+-   22ConLDNV
+-   22VarLDNV
+-   22ConLDV
+-   22VarLDV
+
+We can modify the call to `factor()` like this:
+
+```{r clean_data3,exercise=T,exercise.setup = 'clean_data2'}
+# original levels
+levels(bolting_data_FRI$Treatment.V)
+bolting_data_FRI$Treatment.V = factor(bolting_data_FRI$Treatment.V,levels = c('22ConLDNV','22VarLDNV','22ConLDV','22VarLDV'))
+# new levels
+levels(bolting_data_FRI$Treatment.V)
+```
+
+Since all 4 conditions are 22C and LD, we can also re-name the labels
+for convenience:
+
+```{r clean_data3b,exercise=T,exercise.setup = 'clean_data2'}
+bolting_data_FRI$Treatment.V = factor(bolting_data_FRI$Treatment.V,
+                                      levels = c('22ConLDNV','22VarLDNV','22ConLDV','22VarLDV'),
+                                      labels = c('Con_NoVern','Var_NoVern','Con_Vern','Var_Vern')
+                                      )
+levels(bolting_data_FRI$Treatment.V)
+```
+
+## Analysis - setup
+
+### Design table
+
+The layout of the experiment schematically looks like this:
+
+![](images/SplitPlot_layout.jpg)
+
+The summary of our data.frame looks like this:
+
+```{r summarize_data,exercise=T,exercise.setup = 'clean_data3b'}
+str(bolting_data_FRI)
+```
+
+Based on this, we can make the following design table
+
+| Structure           | Variable                  | N. levels | Block   | EU      |
+|---------------------|---------------------------|-----------|---------|---------|
+| Response            | inverse(Days.to.Bolt/100) | 64        |         |         |
+| Focal Treatment     | FRI                       | 2         | Chamber | Pot     |
+| Moderator Treatment | Treatment.V               | 4         | None    | Chamber |
+| Combo Treatment     | FRI:Treatment.V           | 8         | Chamber | Pot     |
+| Design              | Chamber                   | 8         |         |         |
+|                     | Pot                       | 64        |         |         |
+|                     | FRI:Chamber               | 16        |         |         |
+|                     | FRI:Treatment.V:Chamber   | 64        |         |         |
+|                     |                           |           |         |         |
+
+### Model statement
+
+Based on the above, fill in the model statement below and check that it
+worked by running the model.
+
+Steps:
+
+1.  Remove **Variables** with *N.levels* \>= 64
+2.  Write: Response \~ Variable1 + Variable2 + ...
+3.  Convert EU variables to random by writing: (1\|Variable_EU)
+4.  Check that any variable **Nested** in a random variable is also
+    random
+5.  Check if any two variables in the model are **Aliased**. If they
+    are, drop one. **Notes:** Aliased variables must have the same
+    number of levels. If one Aliased variable is already random, be sure
+    to keep that one!
+6.  If you have any random variables, use the `lmer()` model function.
+    Otherwise, use the `lm()` model function
+7.  Specify: `data = bolting_data_FRI`
+
+Save the output in a variable called `splitplot_model`
+
+```{r model1,exercise=T,exercise.setup = 'clean_data3b'}
+```
+
+```{r model1b,exercise=F,exercise.setup = 'clean_data3b'}
+splitplot_model = lmer(inverse(Days.to.Bolt/100) ~ FRI + Treatment.V + FRI:Treatment.V +
+                         (1|Chamber) + (1|FRI:Chamber),
+                       data = bolting_data_FRI)
+
+splitplot_means = emmeans(splitplot_model,specs = 'FRI',by = 'Treatment.V')
+# splitplot_means
+FRI_effects = contrast(splitplot_means,'trt.vs.ctrl',by = 'Treatment.V',name = 'FRI_effect')
+# FRI_effects
+regrouped_FRI_effects = update(FRI_effects,by = 'FRI_effect')
+# regrouped_FRI_effects
+trt_effect_on_FRI_effects = contrast(regrouped_FRI_effects,'pairwise')
+# summary(trt_effect_on_FRI_effects,infer = T)
+# plot(trt_effect_on_FRI_effects)
+```
+
+## Analysis - Run
+
+### Run the analysis
+
+Now that we have fit our model, the analysis is the same as before:
+
+1.  Fit a model to the data
+2.  Compute the cell means for each level of the **focal treatment**
+    separately for each level of all **moderator treatments**.
+3.  Compute the **focal treatment effects** separately for each level of
+    all **moderator treatments**.
+4.  Compare the focal treatment effects **among levels of** the
+    moderator treatments
+
+### 1. Cell means
+
+Compute the cell means for each level of the **focal treatment**
+separately for each level of all **moderator treatments**.
+
+Save the means in a variable called: `splitplot_means`
+
+Our focal treatment is `FRI` and our moderator is `Treatment.V`. Refer
+back to the `Tutorial_1_factorial.Rmd` tutorial if you need help.
+
+```{r analysis1,exercise=T,exercise.setup = 'model1b'}
+
+```
+
+### 2. FRI effects
+
+Compute the **focal treatment effects** separately for each level of all
+**moderator treatments**.
+
+Save the effects in a variable called: `FRI_effects`. Be sure to name
+the effects.
+
+Refer back to the `Tutorial_1_factorial.Rmd` tutorial if you need help.
+
+```{r analysis2,exercise=T,exercise.setup = 'model1b'}
+
+```
+
+### 3. Treatment.V effects on FRI effects
+
+Compare the focal treatment effects **among levels of** the moderator
+treatments
+
+Save the effects in a variable called: `trt_effect_on_FRI_effects`. Be
+sure to regroup the `FRI_effects` first.
+
+Refer back to the `Tutorial_1_factorial.Rmd` tutorial if you need help.
+
+```{r analysis3,exercise=T,exercise.setup = 'model1b'}
+
+```
+
+### 4. Summarize the results
+
+We are really interested in two types of effects:
+
+1.  The effects of restoring FRI function (in each condition).
+2.  The effect of changing conditions on the effect of restoring FRI
+    function
+
+Answers to these questions are stored in the variables:
+
+1.  `FRI_effects` or `regrouped_FRI_effects`
+2.  `trt_effect_on_FRI_effects`
+
+To report our answers, we want to create tables with confidence
+intervals, and plots.
+
+```{r analysis4,exercise=T,exercise.setup = 'model1b'}
+print(summary(regrouped_FRI_effects,infer = T))
+```
+
+### 5. Summarize the results - plots
+
+To plot the answers, use the `plot()` function:
+
+```{r analysis5,exercise=T,exercise.setup = 'model1b'}
+plot(regrouped_FRI_effects,horizontal = FALSE) + 
+  geom_vline(xintercept = 0) + 
+  expand_limits(x=0) +
+  xlab('FRI_effect') + 
+  theme_bw()
+```
+
+I added some options to make the plot nicer. Try removing each
+annotation to confirm what it does.
+
+### 6. Reporting effects of Treatment.V
+
+Repeat the table and plotting using the `trt_effect_on_FRI_effects`
+object which contains the results for the effects of `Treatment.V` on
+the FRI effects
+
+```{r analysis6,exercise=T,exercise.setup = 'model1b'}
+
+```
+
+### 7. Compact letter display
+
+We can also make a compact letter display as before:
+
+```{r analysis7,exercise=T,exercise.setup = 'model1b'}
+print(cld(regrouped_FRI_effects,Letters = letters))
+```
+
+To create tables with confidence intervals, use the
+`summary(effects,infer = T)` function.
+
+## Complete analysis
+
+Here is the complete analysis code:
+
+```{r complete_code,exercise=T}
+# load data
+bolting_data_FRI = read_csv('data/Bolting_experiment_3.csv')
+
+# clean data
+bolting_data_FRI$Chamber = factor(bolting_data_FRI$Chamber)
+bolting_data_FRI$Genotype = factor(bolting_data_FRI$Genotype)
+bolting_data_FRI$FRI = factor(bolting_data_FRI$FRI)
+bolting_data_FRI$mutant = factor(bolting_data_FRI$mutant)
+bolting_data_FRI$Treatment.V = factor(bolting_data_FRI$Treatment.V)
+bolting_data_FRI$Pot = factor(bolting_data_FRI$Pot)
+
+# view data
+str(bolting_data_FRI)
+
+# look at factor combinations
+table(Genotype=bolting_data_FRI$Genotype,Treatment.V=bolting_data_FRI$Treatment.V)
+table(Treatment.V=bolting_data_FRI$Treatment.V,Chamber=bolting_data_FRI$Chamber)
+
+# fit model
+splitplot_model = lmer(inverse(Days.to.Bolt/100) ~ FRI + Treatment.V + FRI:Treatment.V +
+                         (1|Chamber) + (1|FRI:Chamber),
+                       data = bolting_data_FRI)
+
+# extract results
+
+splitplot_means = emmeans(splitplot_model,specs = 'FRI',by = 'Treatment.V')
+print(splitplot_means)
+
+FRI_effects = contrast(splitplot_means,'trt.vs.ctrl',by = 'Treatment.V',name = 'FRI_effect')
+print(FRI_effects)
+
+regrouped_FRI_effects = update(FRI_effects,by = 'FRI_effect')
+print(regrouped_FRI_effects)
+
+trt_effect_on_FRI_effects = contrast(regrouped_FRI_effects,'pairwise')
+print(summary(trt_effect_on_FRI_effects,infer = T))
+
+# plots
+plot(regrouped_FRI_effects,horizontal = FALSE) + 
+  geom_vline(xintercept = 0) + 
+  expand_limits(x=0) +
+  xlab('FRI_effect') + 
+  theme_bw()
+
+# Compact letter display
+print(cld(regrouped_FRI_effects,Letters = letters))
+```

@@ -1,0 +1,61 @@
+---
+title: "Pulse_analysis"
+output: html_notebook
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(readr)
+library(ggplot2)
+library(emmeans)
+library(lme4)
+library(lmerTest)
+library(pbkrtest)
+library(PLS205)
+library(cowplot)
+```
+
+## Step 1 - load the spreadsheet
+
+```{r}
+expt1_data = read_csv('data/Experiment1.csv')
+```
+
+## Step 2 - Inspect the data
+
+Check that everything is loaded correctly
+
+```{r}
+expt1_data
+View(expt1_data)
+```
+
+## Step 3 - Visualize the data
+
+```{r}
+ggplot(expt1_data,aes(x=Posture,y=Pulse)) + geom_boxplot()
+```
+
+## Step 4 - Fit a model
+
+```{r}
+expt1_model = lm(Pulse ~ Posture,expt1_data)
+```
+
+## Step 5 - Extract results
+
+```{r}
+expt1_means = emmeans(expt1_model,specs = 'Posture')
+summary(expt1_means)
+```
+
+```{r}
+expt1_trt_effect = contrast(expt1_means,'trt.vs.ctrl',ref = 'Sit',name = 'Posture_effect')
+summary(expt1_trt_effect,infer = T)
+```
+
+```{r}
+p_means = plot(expt1_means,comparisons = TRUE,horizontal = F) + expand_limits(x=0)
+p_effect = plot(expt1_trt_effect,horizontal = F) 
+plot_grid(p_means,p_effect,nrow=1)
+```
