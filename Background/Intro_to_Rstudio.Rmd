@@ -1,14 +1,15 @@
 ---
-title: "Quick Intro to R"
-author: Forrest Li, Mitchell Feldmann and Daniel Runcie
-output: 
-  html_notebook:
-    toc: yes
-    toc_float: yes
+title: "Intro to R and RStudio"
+output: html_document
+date: "2025-06-11"
 editor_options: 
   markdown: 
     wrap: sentence
 ---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
 
 # Quick Intro to R
 
@@ -33,6 +34,12 @@ There are typically two types of R scripts:
 
 Scripts work just like entering commands sequentially into the **Console**, but provide a history of what you did.
 
+## R Markdown
+
+This is an R Markdown document.
+Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents.
+For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
 ### Comments (the '\#' symbol):
 
 ```{r}
@@ -47,7 +54,7 @@ Scripts work just like entering commands sequentially into the **Console**, but 
 
 ### Code blocks
 
-Below is a code block.
+Below is a code block that is used in R markdown files.
 In a code block, all text is interpreted as `R` code that should be evaluated.
 Any line that should not be evaluated (e.g. not an R command or code you don't want to run) should be started with a `#`.
 You can run each line separately or run the whole code block at once using the green arrow.
@@ -61,6 +68,21 @@ Check your keyboard shortcuts in Tools \> Keyboard Shortcuts Help to make runnin
 Did you notice a new window appear under the code block?
 We call this the "output" window - it prints out all lines in the code block that are meant to be printed out.
 Depending on the assignment, we may ask you to keep this output in your submission so we can check your numbers.
+
+When compiling an R markdown document, you can click the **Knit** button - a document will be generated that includes both content as well as the output of any embedded R code chunks within the document.
+You can embed an R code chunk like this:
+
+```{r cars}
+summary(cars)
+```
+
+You can also embed plots, for example:
+
+```{r pressure, echo=FALSE}
+plot(pressure)
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
 
 ## Use R as a mathematical and boolean calculator:
 
@@ -113,7 +135,10 @@ Packages can be installed with the function: `install.packages()`, or using the 
 The following code will install most of the packages we will use in this course
 
 ```{r}
-#install.packages(c('rmarkdown','learnr','devtools','Matrix','lme4','lmerTest','pbkrtest','multcomp','multcompView','car','emmeans','ggplot2')) # remove the `#` symbol to run once. Then add it back so it doesn't run again!
+# install.packages(c('rmarkdown','learnr', 'readr', 'devtools','Matrix','lme4','lmerTest','pbkrtest','multcomp','multcompView','car','emmeans','ggplot2', 'cowplot')) 
+# remove the `#` symbol to run once. Then add it back so it doesn't run again!
+# devtools::install_github('deruncie/PLS205_package')
+# you can also install user-developed packages from Github
 ```
 
 Once packages are installed, you need to load them each time you want to use them:
@@ -121,6 +146,7 @@ Once packages are installed, you need to load them each time you want to use the
 ```{r}
 library(lme4)
 library(ggplot2)
+library(PLS205)
 ```
 
 ------------------------------------------------------------------------
@@ -453,40 +479,4 @@ hist(iris$Sepal.Width,breaks = 10)
 # ggplot
 ggplot(iris,aes(x=Sepal.Width)) + 
   geom_histogram(bins = 10,alpha = 0.7,color='white')
-```
-
-### Loops
-
-We won't use them much in this class, but loops are what make programming powerful.
-The idea of a loop is to repeat the same command over and over again.
-
-```{r}
-# for each value from 1 to 10, repeat the code within the brackets.
-# the value i will take on that value for the duration of that loop
-for(i in 1:10) {
-  print(i) # print the value of i in this loop
-}
-```
-
-The following command draws 10 random numbers 100 times, each time saving the mean of the 10 numbers in a vector.
-
-```{r}
-means <- rep(0,100) # prepare a vector for us to store the results
-for(i in 1:100){  # this for loop repeats the commands below between the brackets for each number between 1 and 100
-  # each time through, the object `i` gets assigned to the current iteration number
-  sample <- rnorm(n = 10, mean = 20, sd = 3)  # we use `rnorm` to draw 10 values from a normal distribution. See ?rnorm
-  means[i] <- mean(sample)  # we calculate the mean of the 10 sampled numbers, and assign the value to the ith element of the vector `means`
-}
-```
-
-Check to see that `means` contains all the values:
-
-```{r}
-means
-```
-
-Lets make a histogram of these means:
-
-```{r}
-hist(means)
 ```

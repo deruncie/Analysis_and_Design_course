@@ -23,6 +23,75 @@ library(PLS205)   # additional helper functions I've written for teaching
 bolting_data_1 = read.csv('data/Bolting_experiment_1.csv')
 ```
 
+## Intro to R programing
+
+### R operations
+
+```{r intro1, exercise=TRUE, exercise.lines = 25}
+'Hello world'
+
+# A comment
+
+2*3
+(1+2+3)/3
+2^3
+
+sqrt(4) # square root
+inverse(3)
+
+5 > 3    # > is greater than, < is less than
+6 == 5   # two equal signs is the logical test (is equal to). (One equal sign is assignment. see below)
+5 != 3   # not equal to
+5 >= 5   # greater than or equal to
+
+
+# compare text (character strings)
+"bookshelves" == "a totally different character"
+"apples" != "oranges"
+"apples" == "Apples" # R is always case-sensitive
+```
+
+### R programing
+
+```{r intro2, exercise=TRUE, exercise.lines = 25}
+library(lme4)    # access to modeling functions
+library(ggplot2) # access to nice plots
+
+# assign variable x to be 5 and y to be 6
+x <- 5
+y <- 6
+# add x and y
+x + y
+
+# functions
+mean(c(1,2,3)) # calculates the mean
+qnorm(p = 0.95,mean = 10,sd = 3) # finds the 0.95 critical value of a normal 
+m3 = mean(c(1,2,3))
+m3
+
+# data
+iris <- read.csv('data/iris_data.csv')  # default function
+iris
+str(iris)
+summary(iris)
+
+```
+
+### R plots
+
+
+```{r intro3, exercise=TRUE, exercise.lines = 25}
+# using the ggplot library 
+library(ggplot2)
+# tell ggplot what columns to use for "aes"thetics 
+ggplot(iris,aes(x=Sepal.Length,y=Sepal.Width)) + 
+  # add a scatter plot with geom_point and tell it to use the 'Species" column for color
+  geom_point(aes(color = Species)) +
+  # add a title!
+  ggtitle('Iris Sepals')
+
+```
+
 ## Description of the experiment and goals
 
 ### Burghardt, et al. (2016)
