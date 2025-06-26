@@ -3,6 +3,18 @@ title: "Activities_3_and_4"
 output: html_notebook
 ---
 
+```{r setup, include=FALSE}
+library(ggplot2)  # for making nice plots
+library(cowplot)  # for making nicer plots
+library(emmeans)  # for extracting the results of an analysis
+library(lme4)     # for fitting models to more complex experimental designs
+library(lmerTest) # for better hypothesis tests
+library(pbkrtest) # for better hypothesis tests
+library(multcomp) # for better hypothesis tests
+library(multcompView) # for better hypothesis tests
+library(PLS205)   # additional helper functions I've written for teaching
+```
+
 ## Background
 
 Recall the experimental layout:
@@ -22,7 +34,7 @@ In these two activites you will:
 
 ```{r, results = 'hide', message=FALSE}
 # load data
-bolting_data_FRI = read_csv('data/Bolting_experiment_3.csv')
+bolting_data_FRI = read.csv('data/Bolting_experiment_3.csv')
 
 # clean data
 bolting_data_FRI$Chamber = factor(bolting_data_FRI$Chamber)
@@ -119,10 +131,15 @@ str(bolting_data_subExperiment)
 
 ### Step 2: Write a model
 
+**Hints**: 
+
+1. The rows will be a subset of the rows of the original table
+2. Within each row, only `N. levels` should change relative to the original table.
+3. Follow the steps described in the lecture. These are saved here: `Making_a_Design_Table.pdf`
+
 ```{r}
 
 ```
-
 
 ### Step 3: Compute the treatment effects
 
@@ -130,7 +147,11 @@ str(bolting_data_subExperiment)
 
 ```
 
+**Hint**: The functions you'll use are `emmeans()` and `contrast()`.
+
 ### Step 4: Make a report
+
+**Hint**: The functions you'll use are `plot()`, `print(summary(,infer=T))`, and/or `print(cld())`.
 
 ```{r}
 

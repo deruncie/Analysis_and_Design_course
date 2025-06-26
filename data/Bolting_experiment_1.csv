@@ -1,49 +1,49 @@
-"Pot","Genotype","FRI","mutant","Treatment.V","Chamber","Days.to.Bolt","Chamber.Irradiance"
-1,"flc-3","fri","flc-3","22ConLDNV",1,18,"High"
-2,"flc-3 FRI","FRI","flc-3","22ConLDNV",1,18,"High"
-3,"Col FRI","FRI","WT","22ConLDNV",1,70,"High"
-4,"flc-3","fri","flc-3","22ConLDNV",1,18,"High"
-5,"vin3-4","fri","vin3-4","22ConLDNV",1,18,"High"
-6,"vin3-4 FRI","FRI","vin3-4","22ConLDNV",1,64,"High"
-7,"Col","fri","WT","22ConLDNV",1,20,"High"
-8,"Col","fri","WT","22ConLDNV",1,21,"High"
-9,"Col FRI","FRI","WT","22ConLDNV",1,53,"High"
-10,"vin3-4","fri","vin3-4","22ConLDNV",1,23,"High"
-11,"Col FRI","FRI","WT","22ConLDNV",1,65,"High"
-12,"flc-3","fri","flc-3","22ConLDNV",1,16,"High"
-13,"vin3-4 FRI","FRI","vin3-4","22ConLDNV",1,88,"High"
-14,"vin3-4","fri","vin3-4","22ConLDNV",1,20,"High"
-15,"Col FRI","FRI","WT","22ConLDNV",1,44,"High"
-16,"Col","fri","WT","22ConLDNV",1,18,"High"
-17,"vin3-4 FRI","FRI","vin3-4","22ConLDNV",1,45,"High"
-18,"vin3-4 FRI","FRI","vin3-4","22ConLDNV",1,86,"High"
-19,"flc-3 FRI","FRI","flc-3","22ConLDNV",1,17,"High"
-20,"flc-3","fri","flc-3","22ConLDNV",1,18,"High"
-21,"Col","fri","WT","22ConLDNV",1,20,"High"
-22,"vin3-4","fri","vin3-4","22ConLDNV",1,19,"High"
-23,"flc-3 FRI","FRI","flc-3","22ConLDNV",1,18,"High"
-24,"flc-3 FRI","FRI","flc-3","22ConLDNV",1,18,"High"
-1,"vin3-4","fri","vin3-4","22ConLDNV",2,23,"Low"
-2,"Col","fri","WT","22ConLDNV",2,21,"Low"
-3,"vin3-4 FRI","FRI","vin3-4","22ConLDNV",2,65,"Low"
-4,"flc-3 FRI","FRI","flc-3","22ConLDNV",2,19,"Low"
-5,"flc-3","fri","flc-3","22ConLDNV",2,21,"Low"
-6,"vin3-4","fri","vin3-4","22ConLDNV",2,22,"Low"
-7,"flc-3 FRI","FRI","flc-3","22ConLDNV",2,20,"Low"
-8,"vin3-4 FRI","FRI","vin3-4","22ConLDNV",2,83,"Low"
-9,"Col","fri","WT","22ConLDNV",2,20,"Low"
-10,"vin3-4","fri","vin3-4","22ConLDNV",2,23,"Low"
-11,"flc-3","fri","flc-3","22ConLDNV",2,21,"Low"
-12,"Col","fri","WT","22ConLDNV",2,22,"Low"
-13,"flc-3","fri","flc-3","22ConLDNV",2,20,"Low"
-14,"flc-3","fri","flc-3","22ConLDNV",2,18,"Low"
-15,"vin3-4 FRI","FRI","vin3-4","22ConLDNV",2,58,"Low"
-16,"Col","fri","WT","22ConLDNV",2,18,"Low"
-17,"Col FRI","FRI","WT","22ConLDNV",2,44,"Low"
-18,"Col FRI","FRI","WT","22ConLDNV",2,79,"Low"
-19,"Col FRI","FRI","WT","22ConLDNV",2,68,"Low"
-20,"Col FRI","FRI","WT","22ConLDNV",2,73,"Low"
-21,"flc-3 FRI","FRI","flc-3","22ConLDNV",2,18,"Low"
-22,"vin3-4 FRI","FRI","vin3-4","22ConLDNV",2,63,"Low"
-23,"flc-3 FRI","FRI","flc-3","22ConLDNV",2,18,"Low"
-24,"vin3-4","fri","vin3-4","22ConLDNV",2,23,"Low"
+"Pot","Genotype","FRI","mutant","Treatment.V","Chamber","Days.to.Bolt"
+1,"vin3-4 FRI","FRI","vin3-4","22ConLDNV",1,88
+2,"vin3-4 FRI","FRI","vin3-4","22ConLDNV",1,64
+3,"vin3-4","fri","vin3-4","22ConLDNV",1,18
+4,"Col FRI","FRI","WT","22ConLDNV",1,65
+5,"vin3-4","fri","vin3-4","22ConLDNV",1,19
+6,"Col FRI","FRI","WT","22ConLDNV",1,44
+7,"vin3-4","fri","vin3-4","22ConLDNV",1,23
+8,"flc-3 FRI","FRI","flc-3","22ConLDNV",1,18
+9,"vin3-4 FRI","FRI","vin3-4","22ConLDNV",1,86
+10,"Col","fri","WT","22ConLDNV",1,21
+11,"Col","fri","WT","22ConLDNV",1,20
+12,"vin3-4 FRI","FRI","vin3-4","22ConLDNV",1,45
+13,"Col FRI","FRI","WT","22ConLDNV",1,53
+14,"flc-3 FRI","FRI","flc-3","22ConLDNV",1,17
+15,"flc-3","fri","flc-3","22ConLDNV",1,16
+16,"vin3-4","fri","vin3-4","22ConLDNV",1,20
+17,"flc-3","fri","flc-3","22ConLDNV",1,18
+18,"flc-3 FRI","FRI","flc-3","22ConLDNV",1,18
+19,"Col","fri","WT","22ConLDNV",1,20
+20,"flc-3 FRI","FRI","flc-3","22ConLDNV",1,18
+21,"flc-3","fri","flc-3","22ConLDNV",1,18
+22,"Col","fri","WT","22ConLDNV",1,18
+23,"Col FRI","FRI","WT","22ConLDNV",1,70
+24,"flc-3","fri","flc-3","22ConLDNV",1,18
+1,"Col","fri","WT","22ConLDNV",2,20
+2,"Col FRI","FRI","WT","22ConLDNV",2,44
+3,"flc-3","fri","flc-3","22ConLDNV",2,21
+4,"vin3-4","fri","vin3-4","22ConLDNV",2,23
+5,"Col","fri","WT","22ConLDNV",2,22
+6,"vin3-4 FRI","FRI","vin3-4","22ConLDNV",2,65
+7,"Col","fri","WT","22ConLDNV",2,21
+8,"flc-3 FRI","FRI","flc-3","22ConLDNV",2,18
+9,"flc-3 FRI","FRI","flc-3","22ConLDNV",2,20
+10,"flc-3 FRI","FRI","flc-3","22ConLDNV",2,18
+11,"vin3-4 FRI","FRI","vin3-4","22ConLDNV",2,58
+12,"flc-3","fri","flc-3","22ConLDNV",2,20
+13,"Col FRI","FRI","WT","22ConLDNV",2,79
+14,"Col","fri","WT","22ConLDNV",2,18
+15,"flc-3","fri","flc-3","22ConLDNV",2,21
+16,"vin3-4","fri","vin3-4","22ConLDNV",2,23
+17,"Col FRI","FRI","WT","22ConLDNV",2,68
+18,"vin3-4","fri","vin3-4","22ConLDNV",2,23
+19,"vin3-4 FRI","FRI","vin3-4","22ConLDNV",2,63
+20,"Col FRI","FRI","WT","22ConLDNV",2,73
+21,"flc-3 FRI","FRI","flc-3","22ConLDNV",2,19
+22,"vin3-4","fri","vin3-4","22ConLDNV",2,22
+23,"flc-3","fri","flc-3","22ConLDNV",2,18
+24,"vin3-4 FRI","FRI","vin3-4","22ConLDNV",2,83

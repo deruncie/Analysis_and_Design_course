@@ -4,7 +4,6 @@ output: html_notebook
 ---
 
 ```{r setup, include=FALSE}
-library(readr)    # for loading data in a clean way
 library(ggplot2)  # for making nice plots
 library(cowplot)  # for making nicer plots
 library(emmeans)  # for extracting the results of an analysis
@@ -23,7 +22,7 @@ library(PLS205)   # additional helper functions I've written for teaching
 ## 1. Re-load the dataset if needed
 
 ```{r, results = 'hide', message=FALSE}
-bolting_data_1 = read_csv('data/Bolting_experiment_1.csv')
+bolting_data_1 = read.csv('data/Bolting_experiment_1.csv')
 bolting_data_1$mutant = factor(bolting_data_1$mutant,levels = c('WT','flc-3','vin3-4'))
 ```
 
@@ -67,7 +66,7 @@ plot_grid(plot1,plot2,ncol=1)
 Here is the code from the tutorial:
 
 ```{r}
-bolting_data_1 = read_csv('data/Bolting_experiment_1.csv')
+bolting_data_1 = read.csv('data/Bolting_experiment_1.csv')
 bolting_data_1$mutant = factor(bolting_data_1$mutant,levels = c('WT','flc-3','vin3-4'))
 str(bolting_data_1)
 

@@ -13,7 +13,6 @@ editor_options:
 ```{r setup, include=FALSE}
 library(learnr)
 knitr::opts_chunk$set(echo = FALSE)
-library(readr)    # for loading data in a clean way
 library(ggplot2)  # for making nice plots
 library(cowplot)  # for making nicer plots
 library(emmeans)  # for extracting the results of an analysis
@@ -45,7 +44,7 @@ treatments were applied and how the randomization was done.
 ### Load the full dataset
 
 ```{r load_data,exercise=T}
-bolting_data_FRI = read_csv('data/Bolting_experiment_3.csv')
+bolting_data_FRI = read.csv('data/Bolting_experiment_3.csv')
 ```
 
 ### Inspect each column of the data
@@ -167,7 +166,7 @@ str(bolting_data_FRI)
 Based on this, we can make the following design table
 
 | Structure           | Variable                  | N. levels | Block   | EU      |
-|---------------------|---------------------------|-----------|---------|---------|
+|---------------|--------------------|-------------|-------------|-------------|
 | Response            | inverse(Days.to.Bolt/100) | 64        |         |         |
 | Focal Treatment     | FRI                       | 2         | Chamber | Pot     |
 | Moderator Treatment | Treatment.V               | 4         | None    | Chamber |
@@ -241,7 +240,10 @@ separately for each level of all **moderator treatments**.
 Save the means in a variable called: `splitplot_means`
 
 Our focal treatment is `FRI` and our moderator is `Treatment.V`. Refer
-back to the `Tutorial_1_factorial.Rmd` tutorial if you need help.
+back to the `Tutorial_1_factorial.Rmd` tutorial if you need help. 
+
+**Hint**: The function you'll use is `emmeans()`.
+You can best view the output with `print(summary(splitplot_means))`.
 
 ```{r analysis1,exercise=T,exercise.setup = 'model1b'}
 
@@ -257,6 +259,9 @@ the effects.
 
 Refer back to the `Tutorial_1_factorial.Rmd` tutorial if you need help.
 
+**Hint**: The function you'll use is `contrast()`.
+You can best view the output with `print(summary(FRI_effects))`.
+
 ```{r analysis2,exercise=T,exercise.setup = 'model1b'}
 
 ```
@@ -270,6 +275,9 @@ Save the effects in a variable called: `trt_effect_on_FRI_effects`. Be
 sure to regroup the `FRI_effects` first.
 
 Refer back to the `Tutorial_1_factorial.Rmd` tutorial if you need help.
+
+**Hint**: The functions you'll use are `update()` and `contrast()`. 
+You can best view the output with `print(summary(trt_effect_on_FRI_effects))`.
 
 ```{r analysis3,exercise=T,exercise.setup = 'model1b'}
 
@@ -337,7 +345,7 @@ Here is the complete analysis code:
 
 ```{r complete_code,exercise=T}
 # load data
-bolting_data_FRI = read_csv('data/Bolting_experiment_3.csv')
+bolting_data_FRI = read.csv('data/Bolting_experiment_3.csv')
 
 # clean data
 bolting_data_FRI$Chamber = factor(bolting_data_FRI$Chamber)

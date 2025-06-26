@@ -10,7 +10,6 @@ runtime: shiny_prerendered
 ```{r setup, include=FALSE}
 library(learnr)
 knitr::opts_chunk$set(echo = FALSE)
-library(readr)    # for loading data in a clean way
 library(ggplot2)  # for making nice plots
 library(cowplot)  # for making nicer plots
 library(emmeans)  # for extracting the results of an analysis
@@ -39,7 +38,7 @@ We want to measure the effect of these environmental conditions on the FRI effec
 ### Load the full dataset
 
 ```{r load_data,exercise=T}
-bolting_data = read_csv('data/Bolting_experiment.csv')
+bolting_data = read.csv('data/Bolting_experiment_full.csv')
 ```
 
 ### View the data
@@ -54,11 +53,8 @@ str(bolting_data)
 bolting_data$mutant = factor(bolting_data$mutant,levels = c('WT','flc-3','vin3-4'))
 bolting_data$Genotype = factor(bolting_data$Genotype)
 bolting_data$FRI = factor(bolting_data$FRI)
-# bolting_data$Temperature = factor(bolting_data$Temperature)
-# bolting_data$Fluctuation = factor(bolting_data$Fluctuation)
-# bolting_data$Vernalization = factor(bolting_data$Vernalization)
 bolting_data$Treatment.V = factor(bolting_data$Treatment.V)
-bolting_data$Chamber.ID = factor(bolting_data$Chamber)
+bolting_data$Chamber = factor(bolting_data$Chamber)
 ```
 
 
@@ -212,16 +208,12 @@ Note: for compact letter displays, ignore the "SE", "df", "t.ratio" and "p.value
 
 ## Full code:
 ```{r full_code, exercise = TRUE,exercise.lines = 39}
-bolting_data = read_csv('data/Bolting_experiment.csv')
+bolting_data = read.csv('data/Bolting_experiment_full.csv')
 
 bolting_data$mutant = factor(bolting_data$mutant,levels = c('WT','flc-3','vin3-4'))
 bolting_data$Genotype = factor(bolting_data$Genotype)
 bolting_data$FRI = factor(bolting_data$FRI)
-# bolting_data$Temperature = factor(bolting_data$Temperature)
-# bolting_data$Fluctuation = factor(bolting_data$Fluctuation)
-# bolting_data$Vernalization = factor(bolting_data$Vernalization)
 bolting_data$Treatment.V = factor(bolting_data$Treatment.V)
-# bolting_data$Chamber.ID = factor(bolting_data$Chamber.ID)
 
 bolting_model = lm(inverse(Days.to.Bolt) ~ FRI + mutant + Treatment.V + 
                                           FRI:mutant + FRI:Treatment.V + mutant:Treatment.V +
