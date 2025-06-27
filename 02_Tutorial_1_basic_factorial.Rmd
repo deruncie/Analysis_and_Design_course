@@ -203,15 +203,7 @@ plot1
 
 ### Improve the plots:
 
-Here is the plot code again:
-
-```{r plot2,exercise=TRUE}
-plot1 = ggplot(bolting_data_1,aes(x=FRI,y=Days.to.Bolt)) + 
-  geom_jitter(width = 0.1,aes(color = FRI))
-plot1
-```
-
-Add the following one-at-a-time:
+Go back to the plot code above and add the following one-at-a-time:
 
 This code will separate the points by the moderator genotype:
 

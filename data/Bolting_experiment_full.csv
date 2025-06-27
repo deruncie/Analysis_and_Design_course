@@ -1,193 +1,193 @@
 "Pot","Genotype","FRI","mutant","Treatment.V","Chamber","Days.to.Bolt"
-1,"vin3-4 FRI","FRI","vin3-4","22ConLDNV",1,88
+1,"Col","fri","WT","22ConLDNV",1,20
 2,"vin3-4 FRI","FRI","vin3-4","22ConLDNV",1,64
-3,"vin3-4","fri","vin3-4","22ConLDNV",1,18
-4,"Col FRI","FRI","WT","22ConLDNV",1,65
-5,"vin3-4","fri","vin3-4","22ConLDNV",1,19
-6,"Col FRI","FRI","WT","22ConLDNV",1,44
-7,"vin3-4","fri","vin3-4","22ConLDNV",1,23
-8,"flc-3 FRI","FRI","flc-3","22ConLDNV",1,18
+3,"vin3-4","fri","vin3-4","22ConLDNV",1,20
+4,"vin3-4","fri","vin3-4","22ConLDNV",1,18
+5,"flc-3 FRI","FRI","flc-3","22ConLDNV",1,18
+6,"flc-3","fri","flc-3","22ConLDNV",1,18
+7,"Col FRI","FRI","WT","22ConLDNV",1,44
+8,"vin3-4","fri","vin3-4","22ConLDNV",1,19
 9,"vin3-4 FRI","FRI","vin3-4","22ConLDNV",1,86
-10,"Col","fri","WT","22ConLDNV",1,21
+10,"vin3-4","fri","vin3-4","22ConLDNV",1,23
 11,"Col","fri","WT","22ConLDNV",1,20
-12,"vin3-4 FRI","FRI","vin3-4","22ConLDNV",1,45
+12,"flc-3","fri","flc-3","22ConLDNV",1,16
 13,"Col FRI","FRI","WT","22ConLDNV",1,53
-14,"flc-3 FRI","FRI","flc-3","22ConLDNV",1,17
-15,"flc-3","fri","flc-3","22ConLDNV",1,16
-16,"vin3-4","fri","vin3-4","22ConLDNV",1,20
+14,"Col FRI","FRI","WT","22ConLDNV",1,70
+15,"flc-3","fri","flc-3","22ConLDNV",1,18
+16,"flc-3 FRI","FRI","flc-3","22ConLDNV",1,17
 17,"flc-3","fri","flc-3","22ConLDNV",1,18
-18,"flc-3 FRI","FRI","flc-3","22ConLDNV",1,18
-19,"Col","fri","WT","22ConLDNV",1,20
-20,"flc-3 FRI","FRI","flc-3","22ConLDNV",1,18
-21,"flc-3","fri","flc-3","22ConLDNV",1,18
-22,"Col","fri","WT","22ConLDNV",1,18
-23,"Col FRI","FRI","WT","22ConLDNV",1,70
-24,"flc-3","fri","flc-3","22ConLDNV",1,18
-1,"Col","fri","WT","22ConLDNV",2,20
-2,"Col FRI","FRI","WT","22ConLDNV",2,44
-3,"flc-3","fri","flc-3","22ConLDNV",2,21
-4,"vin3-4","fri","vin3-4","22ConLDNV",2,23
-5,"Col","fri","WT","22ConLDNV",2,22
-6,"vin3-4 FRI","FRI","vin3-4","22ConLDNV",2,65
-7,"Col","fri","WT","22ConLDNV",2,21
-8,"flc-3 FRI","FRI","flc-3","22ConLDNV",2,18
-9,"flc-3 FRI","FRI","flc-3","22ConLDNV",2,20
-10,"flc-3 FRI","FRI","flc-3","22ConLDNV",2,18
-11,"vin3-4 FRI","FRI","vin3-4","22ConLDNV",2,58
-12,"flc-3","fri","flc-3","22ConLDNV",2,20
-13,"Col FRI","FRI","WT","22ConLDNV",2,79
-14,"Col","fri","WT","22ConLDNV",2,18
-15,"flc-3","fri","flc-3","22ConLDNV",2,21
-16,"vin3-4","fri","vin3-4","22ConLDNV",2,23
-17,"Col FRI","FRI","WT","22ConLDNV",2,68
-18,"vin3-4","fri","vin3-4","22ConLDNV",2,23
-19,"vin3-4 FRI","FRI","vin3-4","22ConLDNV",2,63
-20,"Col FRI","FRI","WT","22ConLDNV",2,73
-21,"flc-3 FRI","FRI","flc-3","22ConLDNV",2,19
-22,"vin3-4","fri","vin3-4","22ConLDNV",2,22
-23,"flc-3","fri","flc-3","22ConLDNV",2,18
-24,"vin3-4 FRI","FRI","vin3-4","22ConLDNV",2,83
-1,"flc-3","fri","flc-3","22ConLDV",3,16
-2,"flc-3","fri","flc-3","22ConLDV",3,18
-3,"flc-3","fri","flc-3","22ConLDV",3,15
-4,"vin3-4 FRI","FRI","vin3-4","22ConLDV",3,62
-5,"vin3-4","fri","vin3-4","22ConLDV",3,18
-6,"Col FRI","FRI","WT","22ConLDV",3,20
-7,"vin3-4 FRI","FRI","vin3-4","22ConLDV",3,81
-8,"flc-3 FRI","FRI","flc-3","22ConLDV",3,15
-9,"flc-3 FRI","FRI","flc-3","22ConLDV",3,18
-10,"Col","fri","WT","22ConLDV",3,17
-11,"vin3-4","fri","vin3-4","22ConLDV",3,18
-12,"Col","fri","WT","22ConLDV",3,17
-13,"vin3-4","fri","vin3-4","22ConLDV",3,18
-14,"vin3-4","fri","vin3-4","22ConLDV",3,18
-15,"Col","fri","WT","22ConLDV",3,17
-16,"vin3-4 FRI","FRI","vin3-4","22ConLDV",3,60
-17,"flc-3","fri","flc-3","22ConLDV",3,18
-18,"Col FRI","FRI","WT","22ConLDV",3,23
-19,"flc-3 FRI","FRI","flc-3","22ConLDV",3,17
-20,"flc-3 FRI","FRI","flc-3","22ConLDV",3,18
-21,"Col FRI","FRI","WT","22ConLDV",3,20
-22,"vin3-4 FRI","FRI","vin3-4","22ConLDV",3,39
-23,"Col FRI","FRI","WT","22ConLDV",3,21
-24,"Col","fri","WT","22ConLDV",3,15
-1,"vin3-4 FRI","FRI","vin3-4","22ConLDV",4,72
-2,"Col","fri","WT","22ConLDV",4,16
-3,"flc-3 FRI","FRI","flc-3","22ConLDV",4,17
-4,"vin3-4 FRI","FRI","vin3-4","22ConLDV",4,65
-5,"flc-3","fri","flc-3","22ConLDV",4,18
-6,"vin3-4 FRI","FRI","vin3-4","22ConLDV",4,76
-7,"Col FRI","FRI","WT","22ConLDV",4,20
-8,"Col","fri","WT","22ConLDV",4,18
-9,"flc-3 FRI","FRI","flc-3","22ConLDV",4,16
-10,"vin3-4 FRI","FRI","vin3-4","22ConLDV",4,78
-11,"Col","fri","WT","22ConLDV",4,17
-12,"vin3-4","fri","vin3-4","22ConLDV",4,17
-13,"flc-3","fri","flc-3","22ConLDV",4,16
-14,"flc-3 FRI","FRI","flc-3","22ConLDV",4,16
-15,"flc-3","fri","flc-3","22ConLDV",4,18
-16,"Col FRI","FRI","WT","22ConLDV",4,25
-17,"vin3-4","fri","vin3-4","22ConLDV",4,20
-18,"flc-3 FRI","FRI","flc-3","22ConLDV",4,17
-19,"flc-3","fri","flc-3","22ConLDV",4,17
-20,"Col","fri","WT","22ConLDV",4,18
-21,"vin3-4","fri","vin3-4","22ConLDV",4,19
-22,"Col FRI","FRI","WT","22ConLDV",4,23
-23,"Col FRI","FRI","WT","22ConLDV",4,21
-24,"vin3-4","fri","vin3-4","22ConLDV",4,19
-1,"vin3-4","fri","vin3-4","22VarLDNV",5,19
-2,"vin3-4","fri","vin3-4","22VarLDNV",5,22
-3,"flc-3","fri","flc-3","22VarLDNV",5,17
-4,"Col","fri","WT","22VarLDNV",5,20
-5,"Col FRI","FRI","WT","22VarLDNV",5,38
-6,"flc-3","fri","flc-3","22VarLDNV",5,19
-7,"vin3-4 FRI","FRI","vin3-4","22VarLDNV",5,39
-8,"vin3-4","fri","vin3-4","22VarLDNV",5,23
-9,"vin3-4","fri","vin3-4","22VarLDNV",5,20
-10,"Col FRI","FRI","WT","22VarLDNV",5,38
-11,"Col","fri","WT","22VarLDNV",5,20
-12,"Col","fri","WT","22VarLDNV",5,19
-13,"vin3-4 FRI","FRI","vin3-4","22VarLDNV",5,36
-14,"flc-3 FRI","FRI","flc-3","22VarLDNV",5,17
-15,"flc-3 FRI","FRI","flc-3","22VarLDNV",5,18
-16,"flc-3 FRI","FRI","flc-3","22VarLDNV",5,17
-17,"flc-3","fri","flc-3","22VarLDNV",5,18
-18,"Col","fri","WT","22VarLDNV",5,24
-19,"vin3-4 FRI","FRI","vin3-4","22VarLDNV",5,35
-20,"Col FRI","FRI","WT","22VarLDNV",5,40
-21,"Col FRI","FRI","WT","22VarLDNV",5,36
-22,"vin3-4 FRI","FRI","vin3-4","22VarLDNV",5,35
-23,"flc-3","fri","flc-3","22VarLDNV",5,18
-24,"flc-3 FRI","FRI","flc-3","22VarLDNV",5,18
-1,"Col","fri","WT","22VarLDNV",6,22
-2,"vin3-4 FRI","FRI","vin3-4","22VarLDNV",6,42
-3,"flc-3","fri","flc-3","22VarLDNV",6,18
-4,"flc-3","fri","flc-3","22VarLDNV",6,20
-5,"Col FRI","FRI","WT","22VarLDNV",6,45
-6,"flc-3 FRI","FRI","flc-3","22VarLDNV",6,18
-7,"Col","fri","WT","22VarLDNV",6,22
-8,"flc-3 FRI","FRI","flc-3","22VarLDNV",6,19
-9,"vin3-4","fri","vin3-4","22VarLDNV",6,22
-10,"Col FRI","FRI","WT","22VarLDNV",6,45
-11,"vin3-4","fri","vin3-4","22VarLDNV",6,21
-12,"flc-3","fri","flc-3","22VarLDNV",6,19
-13,"flc-3 FRI","FRI","flc-3","22VarLDNV",6,18
-14,"Col FRI","FRI","WT","22VarLDNV",6,45
-15,"vin3-4","fri","vin3-4","22VarLDNV",6,21
-16,"Col","fri","WT","22VarLDNV",6,19
-17,"flc-3","fri","flc-3","22VarLDNV",6,19
-18,"flc-3 FRI","FRI","flc-3","22VarLDNV",6,18
-19,"vin3-4 FRI","FRI","vin3-4","22VarLDNV",6,45
-20,"Col FRI","FRI","WT","22VarLDNV",6,46
-21,"Col","fri","WT","22VarLDNV",6,21
-22,"vin3-4 FRI","FRI","vin3-4","22VarLDNV",6,41
-23,"vin3-4 FRI","FRI","vin3-4","22VarLDNV",6,45
-24,"vin3-4","fri","vin3-4","22VarLDNV",6,26
-1,"flc-3","fri","flc-3","22VarLDV",7,18
-2,"Col FRI","FRI","WT","22VarLDV",7,23
-3,"vin3-4","fri","vin3-4","22VarLDV",7,17
-4,"vin3-4","fri","vin3-4","22VarLDV",7,21
-5,"vin3-4 FRI","FRI","vin3-4","22VarLDV",7,39
-6,"vin3-4 FRI","FRI","vin3-4","22VarLDV",7,35
-7,"Col FRI","FRI","WT","22VarLDV",7,21
-8,"vin3-4 FRI","FRI","vin3-4","22VarLDV",7,42
-9,"flc-3 FRI","FRI","flc-3","22VarLDV",7,16
-10,"flc-3 FRI","FRI","flc-3","22VarLDV",7,17
-11,"flc-3 FRI","FRI","flc-3","22VarLDV",7,17
-12,"vin3-4","fri","vin3-4","22VarLDV",7,19
-13,"Col FRI","FRI","WT","22VarLDV",7,24
-14,"Col","fri","WT","22VarLDV",7,17
-15,"flc-3","fri","flc-3","22VarLDV",7,17
-16,"Col","fri","WT","22VarLDV",7,19
-17,"flc-3","fri","flc-3","22VarLDV",7,17
-18,"vin3-4","fri","vin3-4","22VarLDV",7,20
-19,"vin3-4 FRI","FRI","vin3-4","22VarLDV",7,40
-20,"flc-3 FRI","FRI","flc-3","22VarLDV",7,17
-21,"flc-3","fri","flc-3","22VarLDV",7,17
-22,"Col FRI","FRI","WT","22VarLDV",7,24
-23,"Col","fri","WT","22VarLDV",7,17
-24,"Col","fri","WT","22VarLDV",7,19
-1,"flc-3","fri","flc-3","22VarLDV",8,19
-2,"Col","fri","WT","22VarLDV",8,19
-3,"flc-3 FRI","FRI","flc-3","22VarLDV",8,16
-4,"Col","fri","WT","22VarLDV",8,17
-5,"Col","fri","WT","22VarLDV",8,19
-6,"flc-3","fri","flc-3","22VarLDV",8,21
-7,"vin3-4","fri","vin3-4","22VarLDV",8,19
-8,"flc-3","fri","flc-3","22VarLDV",8,17
-9,"flc-3 FRI","FRI","flc-3","22VarLDV",8,19
-10,"Col FRI","FRI","WT","22VarLDV",8,26
-11,"vin3-4","fri","vin3-4","22VarLDV",8,18
-12,"vin3-4 FRI","FRI","vin3-4","22VarLDV",8,45
-13,"flc-3 FRI","FRI","flc-3","22VarLDV",8,17
-14,"vin3-4 FRI","FRI","vin3-4","22VarLDV",8,44
-15,"Col","fri","WT","22VarLDV",8,20
-16,"Col FRI","FRI","WT","22VarLDV",8,25
-17,"vin3-4 FRI","FRI","vin3-4","22VarLDV",8,48
-18,"Col FRI","FRI","WT","22VarLDV",8,25
-19,"vin3-4","fri","vin3-4","22VarLDV",8,20
-20,"vin3-4 FRI","FRI","vin3-4","22VarLDV",8,41
-21,"flc-3 FRI","FRI","flc-3","22VarLDV",8,17
-22,"Col FRI","FRI","WT","22VarLDV",8,25
-23,"vin3-4","fri","vin3-4","22VarLDV",8,20
-24,"flc-3","fri","flc-3","22VarLDV",8,18
+18,"Col","fri","WT","22ConLDNV",1,18
+19,"flc-3 FRI","FRI","flc-3","22ConLDNV",1,18
+20,"vin3-4 FRI","FRI","vin3-4","22ConLDNV",1,88
+21,"vin3-4 FRI","FRI","vin3-4","22ConLDNV",1,45
+22,"flc-3 FRI","FRI","flc-3","22ConLDNV",1,18
+23,"Col","fri","WT","22ConLDNV",1,21
+24,"Col FRI","FRI","WT","22ConLDNV",1,65
+1,"flc-3","fri","flc-3","22VarLDNV",2,19
+2,"Col","fri","WT","22VarLDNV",2,19
+3,"vin3-4 FRI","FRI","vin3-4","22VarLDNV",2,41
+4,"vin3-4","fri","vin3-4","22VarLDNV",2,21
+5,"vin3-4 FRI","FRI","vin3-4","22VarLDNV",2,45
+6,"Col","fri","WT","22VarLDNV",2,22
+7,"vin3-4","fri","vin3-4","22VarLDNV",2,22
+8,"vin3-4 FRI","FRI","vin3-4","22VarLDNV",2,42
+9,"vin3-4","fri","vin3-4","22VarLDNV",2,26
+10,"Col FRI","FRI","WT","22VarLDNV",2,45
+11,"flc-3 FRI","FRI","flc-3","22VarLDNV",2,18
+12,"vin3-4","fri","vin3-4","22VarLDNV",2,21
+13,"flc-3","fri","flc-3","22VarLDNV",2,19
+14,"Col FRI","FRI","WT","22VarLDNV",2,46
+15,"flc-3","fri","flc-3","22VarLDNV",2,18
+16,"Col FRI","FRI","WT","22VarLDNV",2,45
+17,"flc-3 FRI","FRI","flc-3","22VarLDNV",2,18
+18,"flc-3 FRI","FRI","flc-3","22VarLDNV",2,19
+19,"flc-3","fri","flc-3","22VarLDNV",2,20
+20,"Col","fri","WT","22VarLDNV",2,21
+21,"flc-3 FRI","FRI","flc-3","22VarLDNV",2,18
+22,"Col","fri","WT","22VarLDNV",2,22
+23,"vin3-4 FRI","FRI","vin3-4","22VarLDNV",2,45
+24,"Col FRI","FRI","WT","22VarLDNV",2,45
+1,"vin3-4","fri","vin3-4","22ConLDNV",3,23
+2,"Col FRI","FRI","WT","22ConLDNV",3,68
+3,"Col","fri","WT","22ConLDNV",3,21
+4,"flc-3 FRI","FRI","flc-3","22ConLDNV",3,18
+5,"flc-3","fri","flc-3","22ConLDNV",3,20
+6,"Col","fri","WT","22ConLDNV",3,22
+7,"flc-3 FRI","FRI","flc-3","22ConLDNV",3,19
+8,"flc-3","fri","flc-3","22ConLDNV",3,21
+9,"Col","fri","WT","22ConLDNV",3,18
+10,"Col FRI","FRI","WT","22ConLDNV",3,73
+11,"vin3-4","fri","vin3-4","22ConLDNV",3,23
+12,"vin3-4","fri","vin3-4","22ConLDNV",3,22
+13,"Col FRI","FRI","WT","22ConLDNV",3,79
+14,"flc-3 FRI","FRI","flc-3","22ConLDNV",3,20
+15,"flc-3","fri","flc-3","22ConLDNV",3,21
+16,"vin3-4 FRI","FRI","vin3-4","22ConLDNV",3,58
+17,"Col FRI","FRI","WT","22ConLDNV",3,44
+18,"vin3-4 FRI","FRI","vin3-4","22ConLDNV",3,83
+19,"vin3-4 FRI","FRI","vin3-4","22ConLDNV",3,63
+20,"flc-3 FRI","FRI","flc-3","22ConLDNV",3,18
+21,"flc-3","fri","flc-3","22ConLDNV",3,18
+22,"Col","fri","WT","22ConLDNV",3,20
+23,"vin3-4 FRI","FRI","vin3-4","22ConLDNV",3,65
+24,"vin3-4","fri","vin3-4","22ConLDNV",3,23
+1,"flc-3","fri","flc-3","22VarLDV",4,19
+2,"Col","fri","WT","22VarLDV",4,19
+3,"flc-3 FRI","FRI","flc-3","22VarLDV",4,16
+4,"vin3-4","fri","vin3-4","22VarLDV",4,20
+5,"vin3-4","fri","vin3-4","22VarLDV",4,20
+6,"Col","fri","WT","22VarLDV",4,17
+7,"flc-3 FRI","FRI","flc-3","22VarLDV",4,17
+8,"Col FRI","FRI","WT","22VarLDV",4,25
+9,"flc-3","fri","flc-3","22VarLDV",4,21
+10,"Col","fri","WT","22VarLDV",4,19
+11,"Col FRI","FRI","WT","22VarLDV",4,25
+12,"flc-3","fri","flc-3","22VarLDV",4,17
+13,"Col","fri","WT","22VarLDV",4,20
+14,"vin3-4 FRI","FRI","vin3-4","22VarLDV",4,41
+15,"vin3-4","fri","vin3-4","22VarLDV",4,18
+16,"flc-3 FRI","FRI","flc-3","22VarLDV",4,19
+17,"vin3-4","fri","vin3-4","22VarLDV",4,19
+18,"flc-3","fri","flc-3","22VarLDV",4,18
+19,"Col FRI","FRI","WT","22VarLDV",4,25
+20,"vin3-4 FRI","FRI","vin3-4","22VarLDV",4,44
+21,"Col FRI","FRI","WT","22VarLDV",4,26
+22,"vin3-4 FRI","FRI","vin3-4","22VarLDV",4,48
+23,"vin3-4 FRI","FRI","vin3-4","22VarLDV",4,45
+24,"flc-3 FRI","FRI","flc-3","22VarLDV",4,17
+1,"flc-3","fri","flc-3","22ConLDV",5,16
+2,"flc-3 FRI","FRI","flc-3","22ConLDV",5,16
+3,"Col FRI","FRI","WT","22ConLDV",5,25
+4,"flc-3 FRI","FRI","flc-3","22ConLDV",5,17
+5,"Col","fri","WT","22ConLDV",5,18
+6,"vin3-4 FRI","FRI","vin3-4","22ConLDV",5,76
+7,"vin3-4","fri","vin3-4","22ConLDV",5,19
+8,"vin3-4","fri","vin3-4","22ConLDV",5,19
+9,"vin3-4 FRI","FRI","vin3-4","22ConLDV",5,72
+10,"Col FRI","FRI","WT","22ConLDV",5,23
+11,"Col FRI","FRI","WT","22ConLDV",5,21
+12,"flc-3","fri","flc-3","22ConLDV",5,17
+13,"flc-3 FRI","FRI","flc-3","22ConLDV",5,17
+14,"Col","fri","WT","22ConLDV",5,18
+15,"Col FRI","FRI","WT","22ConLDV",5,20
+16,"vin3-4","fri","vin3-4","22ConLDV",5,20
+17,"flc-3","fri","flc-3","22ConLDV",5,18
+18,"vin3-4","fri","vin3-4","22ConLDV",5,17
+19,"Col","fri","WT","22ConLDV",5,16
+20,"Col","fri","WT","22ConLDV",5,17
+21,"vin3-4 FRI","FRI","vin3-4","22ConLDV",5,65
+22,"vin3-4 FRI","FRI","vin3-4","22ConLDV",5,78
+23,"flc-3 FRI","FRI","flc-3","22ConLDV",5,16
+24,"flc-3","fri","flc-3","22ConLDV",5,18
+1,"vin3-4","fri","vin3-4","22ConLDV",6,18
+2,"Col","fri","WT","22ConLDV",6,15
+3,"vin3-4 FRI","FRI","vin3-4","22ConLDV",6,60
+4,"vin3-4 FRI","FRI","vin3-4","22ConLDV",6,39
+5,"Col","fri","WT","22ConLDV",6,17
+6,"vin3-4 FRI","FRI","vin3-4","22ConLDV",6,81
+7,"flc-3","fri","flc-3","22ConLDV",6,18
+8,"Col","fri","WT","22ConLDV",6,17
+9,"flc-3 FRI","FRI","flc-3","22ConLDV",6,18
+10,"Col FRI","FRI","WT","22ConLDV",6,20
+11,"vin3-4","fri","vin3-4","22ConLDV",6,18
+12,"flc-3","fri","flc-3","22ConLDV",6,16
+13,"flc-3","fri","flc-3","22ConLDV",6,15
+14,"Col FRI","FRI","WT","22ConLDV",6,23
+15,"vin3-4","fri","vin3-4","22ConLDV",6,18
+16,"vin3-4 FRI","FRI","vin3-4","22ConLDV",6,62
+17,"flc-3 FRI","FRI","flc-3","22ConLDV",6,15
+18,"Col FRI","FRI","WT","22ConLDV",6,21
+19,"vin3-4","fri","vin3-4","22ConLDV",6,18
+20,"flc-3 FRI","FRI","flc-3","22ConLDV",6,17
+21,"Col FRI","FRI","WT","22ConLDV",6,20
+22,"flc-3 FRI","FRI","flc-3","22ConLDV",6,18
+23,"flc-3","fri","flc-3","22ConLDV",6,18
+24,"Col","fri","WT","22ConLDV",6,17
+1,"flc-3","fri","flc-3","22VarLDV",7,17
+2,"vin3-4 FRI","FRI","vin3-4","22VarLDV",7,39
+3,"flc-3","fri","flc-3","22VarLDV",7,18
+4,"Col","fri","WT","22VarLDV",7,19
+5,"Col FRI","FRI","WT","22VarLDV",7,24
+6,"flc-3 FRI","FRI","flc-3","22VarLDV",7,16
+7,"vin3-4","fri","vin3-4","22VarLDV",7,19
+8,"Col","fri","WT","22VarLDV",7,19
+9,"vin3-4","fri","vin3-4","22VarLDV",7,20
+10,"flc-3","fri","flc-3","22VarLDV",7,17
+11,"Col FRI","FRI","WT","22VarLDV",7,23
+12,"vin3-4 FRI","FRI","vin3-4","22VarLDV",7,40
+13,"vin3-4 FRI","FRI","vin3-4","22VarLDV",7,35
+14,"flc-3 FRI","FRI","flc-3","22VarLDV",7,17
+15,"flc-3 FRI","FRI","flc-3","22VarLDV",7,17
+16,"Col","fri","WT","22VarLDV",7,17
+17,"vin3-4","fri","vin3-4","22VarLDV",7,17
+18,"Col FRI","FRI","WT","22VarLDV",7,24
+19,"Col","fri","WT","22VarLDV",7,17
+20,"vin3-4 FRI","FRI","vin3-4","22VarLDV",7,42
+21,"flc-3 FRI","FRI","flc-3","22VarLDV",7,17
+22,"flc-3","fri","flc-3","22VarLDV",7,17
+23,"Col FRI","FRI","WT","22VarLDV",7,21
+24,"vin3-4","fri","vin3-4","22VarLDV",7,21
+1,"vin3-4","fri","vin3-4","22VarLDNV",8,20
+2,"Col FRI","FRI","WT","22VarLDNV",8,38
+3,"vin3-4 FRI","FRI","vin3-4","22VarLDNV",8,36
+4,"flc-3","fri","flc-3","22VarLDNV",8,19
+5,"flc-3","fri","flc-3","22VarLDNV",8,18
+6,"flc-3 FRI","FRI","flc-3","22VarLDNV",8,18
+7,"flc-3 FRI","FRI","flc-3","22VarLDNV",8,17
+8,"flc-3","fri","flc-3","22VarLDNV",8,17
+9,"vin3-4","fri","vin3-4","22VarLDNV",8,23
+10,"flc-3 FRI","FRI","flc-3","22VarLDNV",8,18
+11,"vin3-4","fri","vin3-4","22VarLDNV",8,22
+12,"vin3-4 FRI","FRI","vin3-4","22VarLDNV",8,39
+13,"flc-3","fri","flc-3","22VarLDNV",8,18
+14,"Col","fri","WT","22VarLDNV",8,20
+15,"vin3-4","fri","vin3-4","22VarLDNV",8,19
+16,"Col","fri","WT","22VarLDNV",8,24
+17,"vin3-4 FRI","FRI","vin3-4","22VarLDNV",8,35
+18,"vin3-4 FRI","FRI","vin3-4","22VarLDNV",8,35
+19,"Col","fri","WT","22VarLDNV",8,20
+20,"Col FRI","FRI","WT","22VarLDNV",8,36
+21,"flc-3 FRI","FRI","flc-3","22VarLDNV",8,17
+22,"Col FRI","FRI","WT","22VarLDNV",8,40
+23,"Col","fri","WT","22VarLDNV",8,19
+24,"Col FRI","FRI","WT","22VarLDNV",8,38

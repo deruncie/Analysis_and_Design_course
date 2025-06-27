@@ -95,7 +95,7 @@ This is code to fit the model.
 
 ```{r model1,exercise=TRUE, exercise.setup = 'set_factors2'}
 str(bolting_data)
-bolting_model = lm(inverse(Days.to.Bolt) ~ FRI + mutant + Treatment.V + 
+bolting_model = lm(inverse(Days.to.Bolt/100) ~ FRI + mutant + Treatment.V + 
                                           FRI:mutant + FRI:Treatment.V + mutant:Treatment.V +
                                           FRI:mutant:Treatment.V, 
                                           data = bolting_data)
@@ -215,7 +215,7 @@ bolting_data$Genotype = factor(bolting_data$Genotype)
 bolting_data$FRI = factor(bolting_data$FRI)
 bolting_data$Treatment.V = factor(bolting_data$Treatment.V)
 
-bolting_model = lm(inverse(Days.to.Bolt) ~ FRI + mutant + Treatment.V + 
+bolting_model = lm(inverse(Days.to.Bolt/100) ~ FRI + mutant + Treatment.V + 
                                           FRI:mutant + FRI:Treatment.V + mutant:Treatment.V +
                                           FRI:mutant:Treatment.V, 
                                           data = bolting_data)
